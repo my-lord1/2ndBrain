@@ -19,11 +19,11 @@ export function Dashboard() {
 
   return <div>
     <Sidebar />
-    <div className="p-4 ml-72 min-h-screen bg-gray-100 border-2">
+    <div className="ml-72 p-8 bg-gray-50 min-h-screen">
       <CreateContentModal open={modalOpen} onClose={() => {
         setModalOpen(false);
       }} />
-      <div className="flex justify-end gap-4">
+      <div className="flex justify-end gap-4 mb-8">
         <Button onClick={() => {
           setModalOpen(true)
         }} variant="primary" text="Add content" startIcon={<PlusIcon />}></Button>
@@ -35,12 +35,12 @@ export function Dashboard() {
                     "Authorization": localStorage.getItem("token")
                 }
             });
-            const shareUrl = `http://localhost:5173/share/${response.data.hash}`;
+            const shareUrl = `http://localhost:5174/share/${response.data.hash}`;
             alert(shareUrl);
         }} variant="secondary" text="Share brain" startIcon={<ShareIcon />}></Button>
       </div>
 
-      <div className="flex gap-4 flex-wrap">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         {contents.map(({type, link, title}) => <Card 
             type={type}
             link={link}

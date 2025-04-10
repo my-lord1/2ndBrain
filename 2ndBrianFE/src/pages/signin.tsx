@@ -4,6 +4,8 @@ import { Input } from "../components/Input";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Logo } from "../icons/Logo";
+import { Brain } from "../icons/Brain";
 
 export function Signin() {
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -13,6 +15,12 @@ export function Signin() {
     async function signin() {
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
+
+        if (!username || !password) {
+            alert("Please fill all fields.");
+            return;
+        }
+        try{
         const response = await axios.post<any>(BACKEND_URL + "/api/v1/signin", {
             username,
             password
@@ -20,14 +28,40 @@ export function Signin() {
         const jwt = response.data.token;
         localStorage.setItem("token", jwt);
         navigate("/dashboard")
+      }
+      catch (error) {
+        console.error("Signin error:", error);
+        alert("Invalid username or password.");
+      }
     }
-    return <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
-        <div className="bg-white rounded-xl border min-w-48 p-8">
-            <Input reference={usernameRef} placeholder="Username" />
-            <Input reference={passwordRef} placeholder="Password" />
-            <div className="flex justify-center pt-4">
-                <Button onClick={signin} loading={false} variant="primary" text="Signin" fullWidth={true} />
-            </div>
+    return (
+   <div className="relative h-screen w-screen flex justify-center items-center" style={{ backgroundImage: "linear-gradient(180deg, #CDA7D2, #BC82C4, #96529B, #70437F, #3C274E)",}}>
+        <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
+          <div className="w-[750px] h-[750px] opacity-80">
+              <Brain />
+          </div>
         </div>
+  
+  
+      <div className="relative z-10 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 sm:p-8 w-full max-w-md space-y-6 transition hover:scale-105 duration-300">
+        <div className="flex items-center justify-center gap-2 hover:scale-110 duration-300">
+          <Logo />
+          <span className="text-3xl font-bold text-gray-800">Second Brain</span>
+        </div>
+  
+      <Input reference={usernameRef} placeholder="Username" />
+      <Input reference={passwordRef} placeholder="Password" />
+  
+        <div className="pt-2">
+          <Button
+            onClick={signin}
+            loading={false}
+            variant="primary"
+            text="Signin"
+            fullWidth={true}
+          />
+        </div>
+      </div>
     </div>
+      );
 }

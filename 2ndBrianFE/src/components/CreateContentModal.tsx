@@ -23,8 +23,11 @@ export function CreateContentModal({ open, onClose }: CreateContentModalProps) {
 
     async function addContent() {
         const title = titleRef.current?.value;
-        const link = linkRef.current?.value;
-
+        const link = linkRef.current?.value;     
+        if (!title || !link) {
+            alert("Please fill all fields.");
+            return;
+        }
         await axios.post(`${BACKEND_URL}/api/v1/content`, {
             link,
             title,
@@ -34,47 +37,45 @@ export function CreateContentModal({ open, onClose }: CreateContentModalProps) {
                 "Authorization": localStorage.getItem("token")
             }
         })
-
         onClose();
 
     }
 
-    return <div>
-        {open && <div> 
-            <div className="w-screen h-screen bg-slate-500 fixed top-0 left-0 opacity-60 flex justify-center">
-               
+    return <div >
+        {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="fixed inset-0 bg-slate-500 opacity-60" onClick={onClose}/>
+            <div className="relative z-10 bg-gradient-to-br from-purple-200 to-purple-300 p-6 rounded-xl shadow-lg w-[90%] max-w-md mx-auto">
+                <div className="flex justify-end">
+                    <button onClick={onClose} className="text-gray-500 hover:text-black">
+                        <CrossIcon />
+                    </button>
             </div>
-            <div className="w-screen h-screen fixed top-0 left-0 flex justify-center">
-                <div className="flex flex-col justify-center">
-                    <span className="bg-white opacity-100 p-4 rounded fixed">
-                        <div className="flex justify-end">
-                            <div onClick={onClose} className="cursor-pointer">
-                                <CrossIcon />
-                            </div>
-                        </div>
-                        <div>
-                            <Input reference={titleRef} placeholder={"Title"} />
-                            <Input reference={linkRef} placeholder={"Link"} />
-                        </div>
-                        <div>
-                            <h1>Type</h1>
-                            <div className="flex gap-1 justify-center pb-2">
-                                <Button text="Youtube" variant={type === ContentType.Youtube ? "primary" : "secondary"} onClick={() => {
-                                    setType(ContentType.Youtube)
-                                }}></Button>
-                                <Button text="Twitter" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                    setType(ContentType.Twitter)
-                                }}></Button>
-                            </div>
-                        </div>
-                        <div className="flex justify-center">
-                            <Button onClick={addContent} variant="primary" text="Submit" />
-                        </div>
-                    </span>
-                </div>     
+            <div className="space-y-4">
+                <Input reference={titleRef} placeholder="Title" />
+                <Input reference={linkRef} placeholder="Link" />
             </div>
-            
-        </div>}
+            <div className="mt-4">
+                <h1 className="text-center font-semibold mb-2">Type</h1>
+                <div className="flex justify-center gap-2">
+                <Button
+                    text="Youtube"
+                    variant={type === ContentType.Youtube ? "primary" : "secondary"}
+                    onClick={() => setType(ContentType.Youtube)}
+                />
+                <Button
+                    text="Twitter"
+                    variant={type === ContentType.Twitter ? "primary" : "secondary"}
+                    onClick={() => setType(ContentType.Twitter)}
+                />
+                </div>
+            </div>
+            <div className="mt-6 flex justify-center">
+                <Button onClick={addContent} variant="primary" text="Submit" />
+            </div>
+            </div>
+        </div>
+        )}
     </div>
 
 }
