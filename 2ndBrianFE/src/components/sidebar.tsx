@@ -9,7 +9,7 @@ export function Sidebar(){
             <div className="pr-2 text-purple-600">
                 <Logo />
             </div>
-            Brainly
+            Second Brain
         </div>
         <div className="pt-8 pl-4">
             <SideBarItem text="Twitter" icon={<TwitterIcon />} />
