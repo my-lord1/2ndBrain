@@ -1,29 +1,36 @@
 import { ShareIcon } from "../icons/ShareIcon"
+import { TrashIcon } from "../icons/TrashIcon";
+import { TwitterIcon } from "../icons/TwitterIcon";
+import { YoutubeIcon } from "../icons/YoutubeIcon";
 
 interface CardProps {
     title: string;
     link: string;
     type: "twitter" | "youtube";
+    onClose?: () => void;
 }
-export function Card({title, link, type}: CardProps) {
+export function Card({title, link, type, onClose}: CardProps) {
     return (
     <div>
         <div className="p-4 bg-gradient-to-br from-purple-200 to-purple-300 rounded-xl border border-purple-300 shadow-md max-w-72 min-w-72 min-h-60 flex flex-col justify-between transition-shadow hover:shadow-xl">
             <div className= "flex justify-between items-start mb-3">
                 <div className="flex items-center text-base font-semibold text-black-900 gap-2">
-                    <div className= "text-gray-500 pr-2">
-                        <ShareIcon/>
+                    <div className= "text-black-500 pr-2">
+                        { type === "youtube" && <YoutubeIcon/> }
+                        { type === "twitter" && <TwitterIcon/>}
                     </div>
                     {title}
                 </div>
                 <div className="flex items-center">
-                    <div className="text-gray-500 pr-2">
+                    <div className="text-black-500 pr-2">
                         <a href={link} target="_blank">
                             <ShareIcon/>
                         </a> 
                     </div>
-                    <div className = "text-gray-500" >
-                        <ShareIcon/>
+                    <div className = "text-black-500" >
+                        <button onClick={onClose}>
+                            <TrashIcon/>
+                        </button>
                     </div>
                 </div>
             </div>

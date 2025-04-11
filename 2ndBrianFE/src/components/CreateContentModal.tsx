@@ -10,7 +10,7 @@ enum ContentType {
     Twitter = "twitter"
 }
 
-// controlled component
+
 interface CreateContentModalProps {
     open: boolean;
     onClose: () => void;
@@ -50,7 +50,7 @@ export function CreateContentModal({ open, onClose }: CreateContentModalProps) {
                     <button onClick={onClose} className="text-gray-500 hover:text-black">
                         <CrossIcon />
                     </button>
-            </div>
+                </div>
             <div className="space-y-4">
                 <Input reference={titleRef} placeholder="Title" />
                 <Input reference={linkRef} placeholder="Link" />

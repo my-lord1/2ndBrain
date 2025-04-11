@@ -34,6 +34,10 @@ export function Signin() {
         alert("Invalid username or password.");
       }
     }
+
+    function revertback() {
+    navigate("/signup");
+    }
     return (
    <div className="relative h-screen w-screen flex justify-center items-center" style={{ backgroundImage: "linear-gradient(180deg, #CDA7D2, #BC82C4, #96529B, #70437F, #3C274E)",}}>
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
@@ -58,8 +62,15 @@ export function Signin() {
             loading={false}
             variant="primary"
             text="Signin"
-            fullWidth={true}
-          />
+            fullWidth={true}>
+            </Button>
+              <div className="flex items-center justify-center mt-4 text-sm text-gray-500">
+                  Don't have an account?
+                <button onClick= { revertback } className="text-blue-500 hover:text-blue-700 font-semibold">
+                  singup
+                </button>
+              </div>
+
         </div>
       </div>
     </div>
