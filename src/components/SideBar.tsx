@@ -1,0 +1,55 @@
+import { Logo } from "../icons/Logo";
+import { TwitterIcon } from "../icons/TwitterIcon";
+import { YoutubeIcon } from "../icons/YoutubeIcon";
+import { SideBarItem } from "./SideBarItem";
+import { Bars3 } from "../icons/Bars3";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+
+export function Sidebar({ open }: { open:any }) {
+    const [IsSideBarclose, SetIsSidebarclose ] = useState(open);
+    const navigate = useNavigate();
+
+    const toggleSideBar = () => {
+        SetIsSidebarclose(!IsSideBarclose);
+
+    }
+
+    useEffect(() => {
+        SetIsSidebarclose(open);
+    }, [open]);
+
+    function revertback1(){
+        navigate("/signin");
+    }
+        return(
+    <div>
+    {IsSideBarclose && (
+    <div className="h-screen bg-white border-r w-72 fixed left-0 top-0 px-6 py-8 shadow-sm">
+        <div className="flex items-center mb-10">
+            
+            <div onClick={toggleSideBar} className="cursor-pointer" >
+                <Bars3/>
+            </div>
+            <div className="flex items-center pl-4 text-purple-600 space-x-2"> 
+                <Logo />
+            <span className="text-xl font-semibold text-gray-900">
+                Second Brain
+            </span>
+            </div>
+        
+        </div>
+        <div className="flex flex-col gap-4 pl-12">
+            <SideBarItem text="Twitter" icon={<TwitterIcon />} />
+            <SideBarItem text="Youtube" icon={<YoutubeIcon />} />
+        </div>
+        <div className="bottom-0 left-0 right-0 flex items-center justify-center p-4 pr-9  ">
+            <button onClick= { revertback1 } className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 active:bg-blue-800">
+                Sign Out
+            </button>
+        </div>
+    </div>)}
+    </div>
+    
+)}
