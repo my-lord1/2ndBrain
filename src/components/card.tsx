@@ -27,7 +27,7 @@ export function Card({title, link, type, onClose}: CardProps) {
               </a>
             </div>
             <div className="text-black-500">
-              <button onClick={onClose}>
+              <button onClick={onClose} className="cursor-pointer">
                 <TrashIcon />
               </button>
             </div>
