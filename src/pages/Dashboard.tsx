@@ -1,4 +1,4 @@
- import { Button } from "../components/Button"
+import { Button } from "../components/Button"
 import { ShareIcon } from "../icons/ShareIcon"
 import { PlusIcon } from "../icons/PlusIcon"
 import { Card } from "../components/card"
@@ -13,21 +13,25 @@ import { LeftArrow } from "../icons/LeftArrow"
 export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const {contents, refresh} = useContent();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(()=>{
     refresh();
   }, [modalOpen])
+
+
+  
   
 
   
   return <div>
-    <Sidebar open={true} />
-    <div className="ml-72 p-8 bg-gray-50 min-h-screen">
+      <Sidebar open={isSidebarOpen} />
+      <div className={`transition-all duration-300 ${isSidebarOpen ? "ml-72" : "ml-0"} p-8 bg-gray-50 min-h-screen`}>
       <CreateContentModal open={modalOpen} onClose={() => {setModalOpen(false);}} />
 
         <div className="flex justify-between items-center mb-8 w-full">
           <div className="flex items-center gap-4">
-            <div >
+            <div onClick={()=>setIsSidebarOpen(!isSidebarOpen)} className= {`cursor-pointer transform transition-transform duration-300 ${isSidebarOpen ? "" : "rotate-180"}`}>
               <LeftArrow/>
             </div>
             <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-purple-500 to-purple-500">

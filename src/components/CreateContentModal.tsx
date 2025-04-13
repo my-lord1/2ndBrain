@@ -28,6 +28,14 @@ export function CreateContentModal({ open, onClose }: CreateContentModalProps) {
             alert("Please fill all fields.");
             return;
         }
+        if (type === ContentType.Youtube && !link.includes("youtube.com") && !link.includes("youtu.be")) {
+        alert("Selected type is YouTube, but the link doesn't look like a YouTube URL.");
+        return;
+        }
+        if (type === ContentType.Twitter && !link.includes("twitter.com") && !link.includes("x.com")) {
+            alert("Selected type is Twitter, but the link doesn't look like a Twitter/X URL.");
+            return;
+        }
         await axios.post(`${BACKEND_URL}/api/v1/content`, {
             link,
             title,

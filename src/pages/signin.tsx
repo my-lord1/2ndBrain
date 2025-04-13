@@ -18,7 +18,7 @@ export function Signin() {
         if (usernameRef.current) {
             localStorage.setItem("username", usernameRef.current.value);
         }
-        console.log("username", username);
+
 
         if (!username || !password) {
             alert("Please fill all fields.");

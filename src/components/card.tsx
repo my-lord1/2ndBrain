@@ -10,6 +10,24 @@ interface CardProps {
     onClose?: () => void;
 }
 export function Card({title, link, type, onClose}: CardProps) {
+  
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div className="p-4 bg-gradient-to-br from-purple-200 to-purple-300 rounded-xl border border-purple-300 shadow-md w-72 h-96 flex flex-col justify-between transition-shadow hover:shadow-xl overflow-hidden">
         <div className="flex justify-between items-start mb-3">

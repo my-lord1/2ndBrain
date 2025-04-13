@@ -13,7 +13,6 @@ export function Sidebar({ open }: { open:any }) {
 
     const toggleSideBar = () => {
         SetIsSidebarclose(!IsSideBarclose);
-
     }
 
     useEffect(() => {
@@ -29,7 +28,7 @@ export function Sidebar({ open }: { open:any }) {
     <div className="h-screen bg-white border-r w-72 fixed left-0 top-0 px-6 py-8 shadow-sm">
         <div className="flex items-center mb-10">
             
-            <div onClick={toggleSideBar} className="cursor-pointer" >
+            <div>
                 <Bars3/>
             </div>
             <div className="flex items-center pl-4 text-purple-600 space-x-2"> 
