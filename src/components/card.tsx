@@ -1,5 +1,5 @@
-import { ShareIcon } from "../icons/ShareIcon"
-import { TrashIcon } from "../icons/TrashIcon";
+
+import { ArrowBox } from "../icons/arrowBox"
 import { TwitterIcon } from "../icons/TwitterIcon";
 import { YoutubeIcon } from "../icons/YoutubeIcon";
 
@@ -12,26 +12,6 @@ interface CardProps {
     handleDelete?: () => void;
 }
 export function Card({title, link, type}: CardProps) {
-  
-
-
-  
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return (<div>
       
@@ -47,7 +27,7 @@ export function Card({title, link, type}: CardProps) {
           <div className="flex items-center">
             <div className="text-black-500 pr-2">
               <a href={link} target="_blank">
-                <ShareIcon />
+                <ArrowBox />
               </a>
             </div>
 

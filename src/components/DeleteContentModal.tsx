@@ -43,8 +43,9 @@ export function DeleteContentModal({ open, onClose }: DeleteContentModalProps) {
                                 <CrossIcon />
                             </button>
                         </div>
+                    <h2>Please enter the title of the content you want to delete:</h2>
                     <div className="space-y-4">
-                        <Input reference={titleRef} placeholder="Title" />
+                        <Input reference={titleRef} placeholder="You can only delete one Title at a time" />
                         
                     </div>
                     <div className="mt-6 flex justify-center">
