@@ -9,11 +9,19 @@ import { useContent } from "../hooks/useContent"
 import { CreateContentModal } from "../components/CreateContentModal"
 import axios from "axios"
 import { LeftArrow } from "../icons/LeftArrow"
+import { TrashIcon } from "../icons/TrashIcon"
+import { DeleteContentModal } from "../components/DeleteContentModal"
 
 export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const {contents, refresh} = useContent();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false); // ADD THIS at top
+
+
+
+  
+  
 
   useEffect(()=>{
     refresh();
@@ -28,6 +36,8 @@ export function Dashboard() {
       <Sidebar open={isSidebarOpen} />
       <div className={`transition-all duration-300 ${isSidebarOpen ? "ml-72" : "ml-0"} p-8 bg-gray-50 min-h-screen`}>
       <CreateContentModal open={modalOpen} onClose={() => {setModalOpen(false);}} />
+      <DeleteContentModal open={deleteModalOpen} onClose={() => setDeleteModalOpen(false)} />
+
 
         <div className="flex justify-between items-center mb-8 w-full">
           <div className="flex items-center gap-4">
@@ -40,8 +50,9 @@ export function Dashboard() {
           </div>
         
         <div className="flex gap-4 mb-8">
-          <Button onClick={() => {setModalOpen(true)}} variant="primary" text="Add content" startIcon={<PlusIcon />}>
+          <Button onClick={() => {setModalOpen(true)}} variant="primary" text="Add content" startIcon={<PlusIcon />} >
           </Button>
+        
           <Button onClick={async () => {
               const response = await axios.post<{ hash: string }>(`${BACKEND_URL}/api/v1/brain/share`, {
                   share: true
@@ -53,16 +64,21 @@ export function Dashboard() {
               const shareUrl = `http://localhost:5174/share/${response.data.hash}`;
               alert(shareUrl);
           }} variant="secondary" text="Share brain" startIcon={<ShareIcon />}></Button>
+          <Button variant= "primary" text="Delete Content" startIcon={<TrashIcon/> }
+            onClick={() => setDeleteModalOpen(true)}
+          ></Button>
         </div>
         </div>
 
 
       <div className="grid grid-flow-col grid-rows-3 gap-3">
-        {contents.map(({type, link, title}) => <Card 
+        {contents.map(({type, link, title}) => (<Card 
             type={type}
             link={link}
             title={title}
-        />)}
+
+
+        />))}
       </div> ̰
     </div>
   </div>

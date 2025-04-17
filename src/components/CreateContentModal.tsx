@@ -52,37 +52,37 @@ export function CreateContentModal({ open, onClose }: CreateContentModalProps) {
     return <div >
         {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <div className="fixed inset-0 bg-slate-500 opacity-60" onClick={onClose}/>
-            <div className="relative z-10 bg-gradient-to-br from-purple-200 to-purple-300 p-6 rounded-xl shadow-lg w-[90%] max-w-md mx-auto">
-                <div className="flex justify-end">
-                    <button onClick={onClose} className="text-gray-500 hover:text-black">
-                        <CrossIcon />
-                    </button>
-                </div>
-            <div className="space-y-4">
-                <Input reference={titleRef} placeholder="Title" />
-                <Input reference={linkRef} placeholder="Link" />
+        <div className="fixed inset-0 bg-slate-500 opacity-60" onClick={onClose}/>
+        <div className="relative z-10 bg-gradient-to-br from-purple-200 to-purple-300 p-6 rounded-xl shadow-lg w-[90%] max-w-md mx-auto">
+            <div className="flex justify-end">
+                <button onClick={onClose} className="text-gray-500 hover:text-black">
+                    <CrossIcon />
+                </button>
             </div>
-            <div className="mt-4">
-                <h1 className="text-center font-semibold mb-2">Type</h1>
-                <div className="flex justify-center gap-2">
-                <Button
-                    text="Youtube"
-                    variant={type === ContentType.Youtube ? "primary" : "secondary"}
-                    onClick={() => setType(ContentType.Youtube)}
-                />
-                <Button
-                    text="Twitter"
-                    variant={type === ContentType.Twitter ? "primary" : "secondary"}
-                    onClick={() => setType(ContentType.Twitter)}
-                />
-                </div>
-            </div>
-            <div className="mt-6 flex justify-center">
-                <Button onClick={addContent} variant="primary" text="Submit" />
-            </div>
+        <div className="space-y-4">
+            <Input reference={titleRef} placeholder="Title" />
+            <Input reference={linkRef} placeholder="Link" />
+        </div>
+        <div className="mt-4">
+            <h1 className="text-center font-semibold mb-2">Type</h1>
+            <div className="flex justify-center gap-2">
+            <Button
+                text="Youtube"
+                variant={type === ContentType.Youtube ? "primary" : "secondary"}
+                onClick={() => setType(ContentType.Youtube)}
+            />
+            <Button
+                text="Twitter"
+                variant={type === ContentType.Twitter ? "primary" : "secondary"}
+                onClick={() => setType(ContentType.Twitter)}
+            />
             </div>
         </div>
+        <div className="mt-6 flex justify-center">
+            <Button onClick={addContent} variant="primary" text="Submit" />
+        </div>
+        </div>
+    </div>
         )}
     </div>
 

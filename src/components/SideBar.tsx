@@ -1,19 +1,17 @@
-import { Logo } from "../icons/Logo";
+
 import { TwitterIcon } from "../icons/TwitterIcon";
 import { YoutubeIcon } from "../icons/YoutubeIcon";
 import { SideBarItem } from "./SideBarItem";
-import { Bars3 } from "../icons/Bars3";
+
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Logo } from "../icons/Logo";
+import { Bars3 } from "../icons/Bars3";
 
 
 export function Sidebar({ open }: { open:any }) {
     const [IsSideBarclose, SetIsSidebarclose ] = useState(open);
     const navigate = useNavigate();
-
-    const toggleSideBar = () => {
-        SetIsSidebarclose(!IsSideBarclose);
-    }
 
     useEffect(() => {
         SetIsSidebarclose(open);
@@ -26,7 +24,8 @@ export function Sidebar({ open }: { open:any }) {
     <div>
     {IsSideBarclose && (
     <div className="h-screen bg-white border-r w-72 fixed left-0 top-0 px-6 py-8 shadow-sm">
-        <div className="flex items-center mb-10">
+       
+       <div className="flex items-center mb-10">
             
             <div>
                 <Bars3/>
@@ -40,8 +39,12 @@ export function Sidebar({ open }: { open:any }) {
         
         </div>
         <div className="flex flex-col gap-4 pl-12">
+            <div >
             <SideBarItem text="Twitter" icon={<TwitterIcon />} />
+            </div>
+            <div>
             <SideBarItem text="Youtube" icon={<YoutubeIcon />} />
+            </div>
         </div>
         <div className="bottom-0 left-0 right-0 flex items-center justify-center p-4 pr-9  ">
             <button onClick= { revertback1 } className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 active:bg-blue-800">

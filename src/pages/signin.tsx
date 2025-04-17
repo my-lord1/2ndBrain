@@ -71,7 +71,7 @@ export function Signin() {
               <div className="flex items-center justify-center mt-4 text-sm text-gray-500">
                   Don't have an account?
                 <button onClick= { revertback } className="text-blue-500 hover:text-blue-700 font-semibold">
-                  singup
+                  signup
                 </button>
               </div>
 

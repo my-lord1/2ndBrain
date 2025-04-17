@@ -7,9 +7,14 @@ interface CardProps {
     title: string;
     link: string;
     type: "twitter" | "youtube";
+    open?: boolean;
     onClose?: () => void;
+    handleDelete?: () => void;
 }
-export function Card({title, link, type, onClose}: CardProps) {
+export function Card({title, link, type}: CardProps) {
+  
+
+
   
 
     
@@ -28,7 +33,8 @@ export function Card({title, link, type, onClose}: CardProps) {
 
 
 
-    return (
+    return (<div>
+      
         <div className="p-4 bg-gradient-to-br from-purple-200 to-purple-300 rounded-xl border border-purple-300 shadow-md w-72 h-96 flex flex-col justify-between transition-shadow hover:shadow-xl overflow-hidden">
         <div className="flex justify-between items-start mb-3">
           <div className="flex items-center text-base font-semibold text-black-900 gap-2">
@@ -44,11 +50,7 @@ export function Card({title, link, type, onClose}: CardProps) {
                 <ShareIcon />
               </a>
             </div>
-            <div className="text-black-500">
-              <button onClick={onClose} className="cursor-pointer">
-                <TrashIcon />
-              </button>
-            </div>
+
           </div>
         </div>
       
@@ -74,7 +76,9 @@ export function Card({title, link, type, onClose}: CardProps) {
             </div>
           )}
         </div>
-      </div> )
+        </div>
+
+      </div>)
 
 
 }
